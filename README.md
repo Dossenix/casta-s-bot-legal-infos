@@ -1,6 +1,6 @@
 # Casta's Bot Legal Infos
 
-Pagina statica con Terms of Service e Privacy Policy per Casta's Bot, un bot Discord.
+Pagina statica bilingue con Terms of Service e Privacy Policy per Casta's Bot, un bot Discord.
 
 ## Pubblicazione
 

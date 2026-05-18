@@ -21,40 +21,63 @@
           </span>
         </a>
 
-        <div class="tabs" role="tablist" aria-label="Documenti legali">
-          <button
-            class="tab-button is-active"
-            type="button"
-            role="tab"
-            aria-selected="true"
-            aria-controls="terms"
-            data-target="terms"
-          >
-            Terms of Service
-          </button>
-          <button
-            class="tab-button"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="privacy"
-            data-target="privacy"
-          >
-            Privacy Policy
-          </button>
+        <div class="nav-actions">
+          <div class="tabs" role="tablist" aria-label="Documenti legali">
+            <button
+              class="tab-button is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="terms"
+              data-target="terms"
+            >
+              Terms of Service
+            </button>
+            <button
+              class="tab-button"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="privacy"
+              data-target="privacy"
+            >
+              Privacy Policy
+            </button>
+          </div>
+
+          <div class="language-switch" aria-label="Selezione lingua">
+            <button
+              class="language-button is-active"
+              type="button"
+              data-lang="it"
+              aria-pressed="true"
+            >
+              IT
+            </button>
+            <button
+              class="language-button"
+              type="button"
+              data-lang="en"
+              aria-pressed="false"
+            >
+              EN
+            </button>
+          </div>
         </div>
       </nav>
     </header>
 
     <main class="page-shell">
       <section class="intro" aria-labelledby="page-title">
-        <p class="eyebrow">Documenti legali</p>
+        <p class="eyebrow" data-i18n="intro.eyebrow">Documenti legali</p>
         <h1 id="page-title">Casta's Bot</h1>
-        <p>
+        <p data-i18n="intro.copy">
           Qui trovi le condizioni di utilizzo e le informazioni sulla privacy
           relative all'uso del bot su Discord.
         </p>
-        <p class="last-updated">Ultimo aggiornamento: 18 maggio 2026</p>
+        <p class="last-updated" data-i18n="intro.updated">
+          Ultimo aggiornamento: 18 maggio 2026
+        </p>
       </section>
 
       <section
@@ -64,20 +87,20 @@
         aria-labelledby="terms-title"
       >
         <div class="panel-heading">
-          <p class="section-kicker">Terms of Service</p>
-          <h2 id="terms-title">Condizioni di utilizzo</h2>
+          <p class="section-kicker" data-i18n="terms.kicker">Terms of Service</p>
+          <h2 id="terms-title" data-i18n="terms.title">Condizioni di utilizzo</h2>
         </div>
 
         <article class="policy-content">
-          <h3>1. Accettazione dei termini</h3>
-          <p>
+          <h3 data-i18n="terms.1.title">1. Accettazione dei termini</h3>
+          <p data-i18n="terms.1.body">
             Utilizzando Casta's Bot su Discord, accetti questi Terms of Service.
             Se non accetti questi termini, non utilizzare il bot e rimuovilo dai
             server in cui hai il permesso di gestire le applicazioni.
           </p>
 
-          <h3>2. Uso consentito</h3>
-          <p>
+          <h3 data-i18n="terms.2.title">2. Uso consentito</h3>
+          <p data-i18n-html="terms.2.body">
             Casta's Bot deve essere usato nel rispetto delle regole di Discord,
             incluse le
             <a href="https://discord.com/terms" target="_blank" rel="noreferrer"
@@ -89,23 +112,23 @@
             servizi terzi.
           </p>
 
-          <h3>3. Disponibilita' del servizio</h3>
-          <p>
+          <h3 data-i18n="terms.3.title">3. Disponibilita' del servizio</h3>
+          <p data-i18n="terms.3.body">
             Il bot viene fornito cosi' com'e'. Potrebbero verificarsi interruzioni,
             bug, manutenzioni, limitazioni o modifiche alle funzionalita' senza
             preavviso. Non garantiamo disponibilita' continua o assenza totale di
             errori.
           </p>
 
-          <h3>4. Permessi e responsabilita' dei server</h3>
-          <p>
+          <h3 data-i18n="terms.4.title">4. Permessi e responsabilita' dei server</h3>
+          <p data-i18n="terms.4.body">
             Gli amministratori dei server sono responsabili della configurazione
             del bot, dei permessi concessi e dell'uso delle sue funzioni nel loro
             server. Invita il bot solo se hai l'autorizzazione necessaria.
           </p>
 
-          <h3>5. Contenuti e comportamento degli utenti</h3>
-          <p>
+          <h3 data-i18n="terms.5.title">5. Contenuti e comportamento degli utenti</h3>
+          <p data-i18n="terms.5.body">
             Gli utenti restano responsabili dei contenuti, dei comandi e delle
             interazioni inviati tramite Discord. Possiamo limitare, sospendere o
             bloccare l'accesso al bot in caso di uso improprio, violazione di
@@ -113,15 +136,15 @@
             servizio.
           </p>
 
-          <h3>6. Modifiche ai termini</h3>
-          <p>
+          <h3 data-i18n="terms.6.title">6. Modifiche ai termini</h3>
+          <p data-i18n="terms.6.body">
             Questi termini possono essere aggiornati nel tempo. L'uso continuato
             del bot dopo una modifica costituisce accettazione della versione
             aggiornata.
           </p>
 
-          <h3>7. Contatti</h3>
-          <p>
+          <h3 data-i18n="terms.7.title">7. Contatti</h3>
+          <p data-i18n-html="terms.7.body">
             Per domande, richieste o segnalazioni puoi scrivere a
             <a href="mailto:mattydosse@gmail.com">mattydosse@gmail.com</a>.
           </p>
@@ -136,13 +159,13 @@
         hidden
       >
         <div class="panel-heading">
-          <p class="section-kicker">Privacy Policy</p>
-          <h2 id="privacy-title">Informativa sulla privacy</h2>
+          <p class="section-kicker" data-i18n="privacy.kicker">Privacy Policy</p>
+          <h2 id="privacy-title" data-i18n="privacy.title">Informativa sulla privacy</h2>
         </div>
 
         <article class="policy-content">
-          <h3>1. Dati che possiamo trattare</h3>
-          <p>
+          <h3 data-i18n="privacy.1.title">1. Dati che possiamo trattare</h3>
+          <p data-i18n="privacy.1.body">
             Casta's Bot puo' trattare dati tecnici e dati Discord necessari al
             funzionamento del bot, come ID utente, ID server, ID canali, ruoli,
             impostazioni del server, comandi usati, timestamp, log tecnici e
@@ -150,39 +173,39 @@
             funzione richiesta.
           </p>
 
-          <h3>2. Finalita' del trattamento</h3>
-          <p>
+          <h3 data-i18n="privacy.2.title">2. Finalita' del trattamento</h3>
+          <p data-i18n="privacy.2.body">
             I dati vengono usati per fornire le funzionalita' del bot, gestire la
             configurazione dei server, migliorare stabilita' e sicurezza,
             prevenire abusi, correggere errori e rispondere a richieste di
             supporto.
           </p>
 
-          <h3>3. Conservazione dei dati</h3>
-          <p>
+          <h3 data-i18n="privacy.3.title">3. Conservazione dei dati</h3>
+          <p data-i18n="privacy.3.body">
             Conserviamo i dati solo per il tempo necessario al funzionamento del
             bot, alla sicurezza del servizio, alla risoluzione di problemi
             tecnici o agli obblighi applicabili. I dati non piu' necessari
             vengono eliminati o resi non riconducibili quando possibile.
           </p>
 
-          <h3>4. Condivisione dei dati</h3>
-          <p>
+          <h3 data-i18n="privacy.4.title">4. Condivisione dei dati</h3>
+          <p data-i18n="privacy.4.body">
             Non vendiamo i dati degli utenti. I dati possono essere trattati da
             servizi tecnici usati per ospitare, monitorare o mantenere il bot,
             oppure condivisi quando richiesto dalla legge o necessario per
             proteggere utenti, server e integrita' del servizio.
           </p>
 
-          <h3>5. Sicurezza</h3>
-          <p>
+          <h3 data-i18n="privacy.5.title">5. Sicurezza</h3>
+          <p data-i18n="privacy.5.body">
             Usiamo misure ragionevoli per proteggere i dati trattati dal bot.
             Nessun sistema online, tuttavia, puo' essere considerato sicuro al
             100%.
           </p>
 
-          <h3>6. Diritti e richieste degli utenti</h3>
-          <p>
+          <h3 data-i18n="privacy.6.title">6. Diritti e richieste degli utenti</h3>
+          <p data-i18n-html="privacy.6.body">
             Puoi richiedere informazioni, correzione o cancellazione dei dati
             associati al tuo utilizzo del bot scrivendo a
             <a href="mailto:mattydosse@gmail.com">mattydosse@gmail.com</a>. Per
@@ -190,8 +213,8 @@
             rilevante, l'ID del server.
           </p>
 
-          <h3>7. Servizi di terze parti</h3>
-          <p>
+          <h3 data-i18n="privacy.7.title">7. Servizi di terze parti</h3>
+          <p data-i18n-html="privacy.7.body">
             Il bot opera sulla piattaforma Discord. L'uso di Discord resta
             soggetto ai
             <a href="https://discord.com/terms" target="_blank" rel="noreferrer"
@@ -217,8 +240,8 @@
             >.
           </p>
 
-          <h3>8. Modifiche alla privacy policy</h3>
-          <p>
+          <h3 data-i18n="privacy.8.title">8. Modifiche alla privacy policy</h3>
+          <p data-i18n="privacy.8.body">
             Questa Privacy Policy puo' essere aggiornata nel tempo. La versione
             pubblicata su questa pagina e' quella attualmente applicabile.
           </p>
@@ -227,9 +250,13 @@
     </main>
 
     <footer class="footer">
-      <p>Sviluppato da: @dossenix @_thetypicalplayer (discord)</p>
-      <p>email: <a href="mailto:mattydosse@gmail.com">mattydosse@gmail.com</a></p>
-      <p class="disclaimer">
+      <p data-i18n="footer.developed">
+        Sviluppato da: @dossenix @_thetypicalplayer (discord)
+      </p>
+      <p data-i18n-html="footer.email">
+        email: <a href="mailto:mattydosse@gmail.com">mattydosse@gmail.com</a>
+      </p>
+      <p class="disclaimer" data-i18n="footer.disclaimer">
         Testi informativi generali per un bot Discord. Non costituiscono
         consulenza legale.
       </p>
