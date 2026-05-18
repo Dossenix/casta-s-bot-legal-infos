@@ -137,6 +137,22 @@ const translations = {
   },
 };
 
+function readSavedLanguage() {
+  try {
+    return localStorage.getItem("castaLegalLanguage");
+  } catch {
+    return null;
+  }
+}
+
+function saveLanguage(language) {
+  try {
+    localStorage.setItem("castaLegalLanguage", language);
+  } catch {
+    return;
+  }
+}
+
 function showPanel(targetId, updateHash = true) {
   const targetPanel = document.getElementById(targetId);
 
@@ -157,7 +173,9 @@ function showPanel(targetId, updateHash = true) {
   });
 
   if (updateHash) {
-    history.replaceState(null, "", `#${targetId}`);
+    const url = new URL(window.location.href);
+    url.hash = targetId;
+    history.replaceState(null, "", url);
   }
 }
 
@@ -179,7 +197,8 @@ function setLanguage(language) {
   }
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const translation = labels[element.dataset.i18n];
+    const key = element.getAttribute("data-i18n");
+    const translation = labels[key];
 
     if (translation) {
       element.textContent = translation;
@@ -187,7 +206,8 @@ function setLanguage(language) {
   });
 
   document.querySelectorAll("[data-i18n-html]").forEach((element) => {
-    const translation = labels[element.dataset.i18nHtml];
+    const key = element.getAttribute("data-i18n-html");
+    const translation = labels[key];
 
     if (translation) {
       element.innerHTML = translation;
@@ -200,7 +220,7 @@ function setLanguage(language) {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
-  localStorage.setItem("castaLegalLanguage", selectedLanguage);
+  saveLanguage(selectedLanguage);
 }
 
 tabButtons.forEach((button) => {
@@ -220,7 +240,8 @@ window.addEventListener("hashchange", () => {
   showPanel(targetId, false);
 });
 
-const savedLanguage = localStorage.getItem("castaLegalLanguage");
+const urlLanguage = new URLSearchParams(window.location.search).get("lang");
+const savedLanguage = readSavedLanguage();
 
-setLanguage(savedLanguage || "it");
+setLanguage(urlLanguage || savedLanguage || "it");
 showPanel(window.location.hash.replace("#", "") || "terms", false);
