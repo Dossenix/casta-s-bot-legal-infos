@@ -1,6 +1,6 @@
-# Casta's Bot Legal Infos
+# Maggika Legal Infos
 
-Pagina statica bilingue con Terms of Service e Privacy Policy per Casta's Bot, un bot Discord.
+Pagina statica bilingue con Terms of Service e Privacy Policy per Maggika, un bot Discord.
 
 ## Pubblicazione
 
