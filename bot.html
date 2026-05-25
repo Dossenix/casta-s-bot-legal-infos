@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Guida operativa e significato di Maggika, bot Discord in Python."
+    />
+    <title>Maggika | Guida Bot</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Navigazione principale">
+        <a class="brand" href="bot.html" aria-label="Maggika guida bot">
+          <span class="brand-mark" aria-hidden="true">MG</span>
+          <span>
+            <span class="brand-name">Maggika</span>
+            <span class="brand-subtitle">Guida Bot</span>
+          </span>
+        </a>
+
+        <div class="nav-actions">
+          <div class="page-links" aria-label="Pagine sito">
+            <a class="page-link is-active" href="bot.html">Guida Bot</a>
+            <a class="page-link" href="index.html#terms">Legal Infos</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page-shell guide-shell">
+      <section class="intro" aria-labelledby="guide-title">
+        <p class="eyebrow">Guida operativa</p>
+        <h1 id="guide-title">Maggika Bot</h1>
+        <p>
+          Maggika e' un bot Discord in Python basato su slash command, pulsanti
+          persistenti e database SQLite. Serve a gestire verifiche, ticket,
+          turni staff, richiami, reminder DISBOARD, notifiche YouTube e strumenti
+          di supporto per la community.
+        </p>
+      </section>
+
+      <section class="feature-grid" aria-label="Funzioni principali">
+        <article class="feature-item">
+          <h2>Verifica e ticket</h2>
+          <p>
+            Pannelli con pulsanti persistenti per verificare i membri e aprire
+            ticket multi-sezione con transcript automatico.
+          </p>
+        </article>
+        <article class="feature-item">
+          <h2>Gestione staff</h2>
+          <p>
+            Cartellino ore con log, reset e archivio, piu' richiami staff con
+            ruolo temporaneo e ripristino da database.
+          </p>
+        </article>
+        <article class="feature-item">
+          <h2>Automazioni community</h2>
+          <p>
+            Risposta automatica quando viene pingato il bot, spam ping
+            controllato per staff, reminder DISBOARD e notifiche YouTube.
+          </p>
+        </article>
+        <article class="feature-item">
+          <h2>Permessi configurabili</h2>
+          <p>
+            I comandi sensibili usano permessi staff, gestione server o ruoli
+            manager previsti dal codice e configurabili tramite ruoli.
+          </p>
+        </article>
+      </section>
+
+      <section class="guide-panel" aria-labelledby="how-to-title">
+        <div class="panel-heading">
+          <p class="section-kicker">Uso dei comandi</p>
+          <h2 id="how-to-title">Come usare Maggika</h2>
+        </div>
+        <div class="policy-content">
+          <p>
+            Tutti i comandi sono slash command: in Discord scrivi
+            <code>/</code>, scegli il comando dal menu, compila i parametri
+            richiesti e invia. Molte risposte sono ephemeral, quindi visibili
+            solo a chi usa il comando.
+          </p>
+          <p>
+            Canali, ruoli e utenti si selezionano direttamente dall'autocomplete
+            di Discord. Gli utenti normali usano soprattutto pulsanti di
+            verifica, ticket e comandi personali come <code>/my_hours</code>.
+          </p>
+        </div>
+      </section>
+
+      <section class="docs-stack" aria-label="Documentazione comandi">
+        <details class="doc-section" open>
+          <summary>Comandi base</summary>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/help_base</code></td>
+                  <td>Tutti</td>
+                  <td>Mostra una lista veloce dei comandi principali.</td>
+                  <td>Scrivi <code>/help_base</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details class="doc-section" open>
+          <summary>Verifica membri</summary>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/setup_verification</code></td>
+                  <td>Staff</td>
+                  <td>Invia nel canale attuale un pannello con pulsante di verifica.</td>
+                  <td>
+                    <code>/setup_verification titolo:&lt;titolo&gt; testo:&lt;testo&gt;</code>
+                    oppure usa i valori default.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Pulsante</h3>
+          <div class="table-wrap compact-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pulsante</th>
+                  <th>Cosa fa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Verificati!!</td>
+                  <td>Assegna all'utente il ruolo configurato in <code>VERIFIED_ROLE_ID</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="note-list">
+            <li>Il ruolo verifica deve esistere.</li>
+            <li>Il ruolo del bot deve stare sopra al ruolo verifica.</li>
+            <li>Il comando reale e' <code>/setup_verification</code>.</li>
+          </ul>
+        </details>
+
+        <details class="doc-section">
+          <summary>Cartellino staff e ore</summary>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/cartellino_panel</code></td>
+                  <td>Manager ore</td>
+                  <td>Invia il pannello cartellino in un canale.</td>
+                  <td><code>/cartellino_panel canale:#staff logs:#log-cartellino</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/cartellino_set_logs</code></td>
+                  <td>Manager ore</td>
+                  <td>Imposta il canale log per aperture, chiusure e annullamenti.</td>
+                  <td><code>/cartellino_set_logs canale:#log-cartellino</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/clock_in</code></td>
+                  <td>Staff</td>
+                  <td>Apre il tuo cartellino.</td>
+                  <td>Scrivi <code>/clock_in</code> quando inizi il turno.</td>
+                </tr>
+                <tr>
+                  <td><code>/clock_out</code></td>
+                  <td>Staff</td>
+                  <td>Chiude il tuo cartellino e salva i minuti.</td>
+                  <td>Scrivi <code>/clock_out</code> quando finisci il turno.</td>
+                </tr>
+                <tr>
+                  <td><code>/my_hours</code></td>
+                  <td>Staff</td>
+                  <td>Mostra le tue ore totali e se hai un turno aperto.</td>
+                  <td>Scrivi <code>/my_hours</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/hours</code></td>
+                  <td>Manager ore</td>
+                  <td>Mostra le ore di un membro staff.</td>
+                  <td><code>/hours staff:@utente</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/hours_reset</code></td>
+                  <td>Manager ore</td>
+                  <td>Azzera le ore di uno staff e archivia il totale precedente.</td>
+                  <td><code>/hours_reset staff:@utente motivo:&lt;motivo&gt;</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/cartellino_annulla</code></td>
+                  <td>Manager ore</td>
+                  <td>Annulla un cartellino aperto o l'ultimo timbro.</td>
+                  <td>
+                    <code>/cartellino_annulla staff:@utente tipo:&lt;tipo&gt; motivo:&lt;motivo&gt;</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>/staff_archive</code></td>
+                  <td>Manager ore</td>
+                  <td>Mostra archivio ore, reset, timbri annullati e richiami.</td>
+                  <td><code>/staff_archive staff:@utente</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Pulsanti del pannello</h3>
+          <div class="table-wrap compact-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pulsante</th>
+                  <th>Cosa fa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Apri cartellino</td>
+                  <td>Equivale a <code>/clock_in</code>.</td>
+                </tr>
+                <tr>
+                  <td>Chiudi cartellino</td>
+                  <td>Equivale a <code>/clock_out</code>.</td>
+                </tr>
+                <tr>
+                  <td>Aperti ora</td>
+                  <td>Mostra chi ha un cartellino aperto in quel momento.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="note-list">
+            <li>Il bot impedisce di aprire due cartellini contemporaneamente.</li>
+            <li>I minuti vengono arrotondati almeno a 1 minuto se il turno ha durata positiva.</li>
+            <li>I log vengono inviati solo se hai configurato il canale log.</li>
+          </ul>
+        </details>
+
+        <details class="doc-section">
+          <summary>Richiami staff</summary>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/staff_richiamo_roles</code></td>
+                  <td>Manager ore</td>
+                  <td>Decide quali ruoli possono dare richiami staff.</td>
+                  <td><code>/staff_richiamo_roles ruolo_1:@Admin ruolo_2:@Manager ruolo_3:@Tecnico</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/staff_richiamo</code></td>
+                  <td>Ruoli autorizzati</td>
+                  <td>Assegna un ruolo temporaneo a uno staff e salva il richiamo.</td>
+                  <td><code>/staff_richiamo staff:@utente ruolo:@Richiamo durata:2h motivo:&lt;motivo&gt;</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="inline-note">Durate supportate: <code>30m</code>, <code>2h</code>, <code>1d</code>, <code>3d</code>, <code>1d2h</code>.</p>
+          <p class="inline-note">
+            Il bot prova a rimuovere automaticamente il ruolo alla scadenza. Se
+            si riavvia, ripristina i richiami ancora pendenti dal database.
+          </p>
+        </details>
+
+        <details class="doc-section">
+          <summary>Ticket multi-sezione</summary>
+          <h3>Tipi ticket disponibili</h3>
+          <div class="table-wrap compact-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Valore</th>
+                  <th>Nome visibile</th>
+                  <th>Uso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>reports_utenti</code></td>
+                  <td>Reports Utenti</td>
+                  <td>Segnalazioni verso utenti.</td>
+                </tr>
+                <tr>
+                  <td><code>reports_staff</code></td>
+                  <td>Reports Staff</td>
+                  <td>Segnalazioni verso membri staff.</td>
+                </tr>
+                <tr>
+                  <td><code>supporto_generale</code></td>
+                  <td>Supporto Generale</td>
+                  <td>Domande, problemi e chiarimenti.</td>
+                </tr>
+                <tr>
+                  <td><code>partnership</code></td>
+                  <td>Partnership</td>
+                  <td>Proposte o richieste partnership.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/ticket_panel</code></td>
+                  <td>Manager ticket</td>
+                  <td>Invia il pannello ticket.</td>
+                  <td><code>/ticket_panel canale:#ticket titolo:&lt;titolo&gt; descrizione:&lt;testo&gt;</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/ticket_set_roles</code></td>
+                  <td>Manager ticket</td>
+                  <td>Imposta i ruoli supporto per un tipo ticket.</td>
+                  <td><code>/ticket_set_roles tipo:supporto_generale ruolo_1:@Staff ruolo_2:@Admin</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/ticket_set_category</code></td>
+                  <td>Manager ticket</td>
+                  <td>Imposta la categoria dove creare i canali ticket.</td>
+                  <td><code>/ticket_set_category tipo:reports_utenti categoria:&lt;categoria&gt;</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/ticket_set_transcript</code></td>
+                  <td>Manager ticket</td>
+                  <td>Imposta il canale dove inviare i transcript.</td>
+                  <td><code>/ticket_set_transcript tipo:reports_utenti canale:#transcript</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/ticket_set_open_message</code></td>
+                  <td>Manager ticket</td>
+                  <td>Personalizza titolo e messaggio del ticket appena aperto.</td>
+                  <td><code>/ticket_set_open_message tipo:supporto_generale titolo:&lt;titolo&gt; messaggio:&lt;messaggio&gt;</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/ticket_reset_open_message</code></td>
+                  <td>Manager ticket</td>
+                  <td>Ripristina il messaggio apertura default.</td>
+                  <td><code>/ticket_reset_open_message tipo:supporto_generale</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/ticket_settings</code></td>
+                  <td>Manager ticket</td>
+                  <td>Mostra configurazione ticket attuale.</td>
+                  <td>Scrivi <code>/ticket_settings</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/close_ticket</code></td>
+                  <td>Owner ticket, supporto o staff</td>
+                  <td>Chiude il ticket corrente, salva transcript e cancella il canale.</td>
+                  <td>Dentro al ticket: <code>/close_ticket motivo:&lt;motivo&gt;</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Placeholder apertura ticket</h3>
+          <p class="inline-note">
+            Puoi usare <code>{ticket_id}</code>, <code>{type}</code>,
+            <code>{user}</code>, <code>{user_name}</code>,
+            <code>{subject}</code>, <code>{description}</code> e
+            <code>{support}</code>.
+          </p>
+          <ul class="note-list">
+            <li>Ogni utente puo' avere un solo ticket aperto per lo stesso tipo.</li>
+            <li>Alla chiusura viene generato un transcript <code>.txt</code> degli ultimi messaggi letti.</li>
+            <li>Il bot deve poter creare e gestire canali, leggere cronologia e inviare file.</li>
+          </ul>
+        </details>
+
+        <details class="doc-section">
+          <summary>DISBOARD</summary>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/disboard_set_timer</code></td>
+                  <td>Staff o gestione server</td>
+                  <td>Imposta dopo quanti minuti ricordare il bump.</td>
+                  <td><code>/disboard_set_timer minuti:120</code>. Range: 1-1440.</td>
+                </tr>
+                <tr>
+                  <td><code>/disboard_status</code></td>
+                  <td>Tutti</td>
+                  <td>Mostra il prossimo reminder DISBOARD pendente.</td>
+                  <td>Scrivi <code>/disboard_status</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/disboard_cancel</code></td>
+                  <td>Staff o gestione server</td>
+                  <td>Cancella i reminder pendenti di un canale.</td>
+                  <td><code>/disboard_cancel canale:#bump</code>, oppure usa il canale attuale.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="note-list">
+            <li>Il bot ascolta i messaggi del bot DISBOARD.</li>
+            <li>Quando rileva un bump riuscito, salva un reminder.</li>
+            <li>Alla scadenza pinga chi ha fatto bump, se riesce a riconoscerlo.</li>
+          </ul>
+        </details>
+
+        <details class="doc-section">
+          <summary>Castamaggic YouTube</summary>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/castamaggic_setup</code></td>
+                  <td>Staff</td>
+                  <td>Configura notifiche nuovo video.</td>
+                  <td><code>/castamaggic_setup youtube_channel_id:UC... canale:#video ruolo:@YouTube intervallo_minuti:30 annuncia_ultimo:false messaggio:&lt;testo&gt;</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_check</code></td>
+                  <td>Staff</td>
+                  <td>Controlla subito se c'e' un nuovo video.</td>
+                  <td><code>/castamaggic_check annuncia_anche_se_gia_visto:false</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_status</code></td>
+                  <td>Tutti</td>
+                  <td>Mostra configurazione Castamaggic.</td>
+                  <td>Scrivi <code>/castamaggic_status</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_set_channel</code></td>
+                  <td>Staff</td>
+                  <td>Cambia canale notifiche video.</td>
+                  <td><code>/castamaggic_set_channel canale:#video</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_set_role</code></td>
+                  <td>Staff</td>
+                  <td>Cambia ruolo da pingare.</td>
+                  <td><code>/castamaggic_set_role ruolo:@YouTube</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_clear_role</code></td>
+                  <td>Staff</td>
+                  <td>Rimuove il ping ruolo.</td>
+                  <td>Scrivi <code>/castamaggic_clear_role</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_set_youtube</code></td>
+                  <td>Staff</td>
+                  <td>Cambia ID canale YouTube.</td>
+                  <td><code>/castamaggic_set_youtube youtube_channel_id:UC...</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_set_interval</code></td>
+                  <td>Staff</td>
+                  <td>Cambia intervallo controllo video.</td>
+                  <td><code>/castamaggic_set_interval minuti:30</code>. Range: 5-1440.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_set_message</code></td>
+                  <td>Staff</td>
+                  <td>Personalizza il testo dell'annuncio.</td>
+                  <td><code>/castamaggic_set_message messaggio:Nuovo video: {title} {url}</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>/castamaggic_toggle</code></td>
+                  <td>Staff</td>
+                  <td>Attiva o disattiva le notifiche.</td>
+                  <td><code>/castamaggic_toggle attivo:true</code> oppure <code>false</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="inline-note">
+            Placeholder annuncio: <code>{title}</code>, <code>{url}</code>,
+            <code>{published}</code>. L'ID canale YouTube di solito inizia con
+            <code>UC</code> e il controllo automatico usa il feed XML.
+          </p>
+        </details>
+
+        <details class="doc-section">
+          <summary>Spam ping controllato</summary>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comando</th>
+                  <th>Chi lo usa</th>
+                  <th>Cosa fa</th>
+                  <th>Come farlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/spam_ping</code></td>
+                  <td>Staff</td>
+                  <td>Pinga un utente da 1 a 5 volte con pausa di 1 secondo.</td>
+                  <td><code>/spam_ping membro:@utente volte:3 messaggio:ti stanno cercando</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="note-list">
+            <li>Non puo' pingare altri bot.</li>
+            <li>Ha cooldown: 1 uso ogni 90 secondi.</li>
+            <li>Non permette ping a ruoli o everyone.</li>
+          </ul>
+        </details>
+
+        <details class="doc-section">
+          <summary>Risposte automatiche e permessi</summary>
+          <p class="inline-note">
+            Maggika risponde automaticamente quando viene menzionato direttamente
+            in un messaggio, ad esempio <code>@MaggikaBot</code>. Risponde con
+            una frase casuale e una GIF, non risponde ai bot e ignora
+            <code>@everyone</code>.
+          </p>
+          <div class="table-wrap compact-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Concetto</th>
+                  <th>Come funziona</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Staff generale</td>
+                  <td>Admin oppure ruoli indicati in <code>STAFF_ROLE_IDS</code>.</td>
+                </tr>
+                <tr>
+                  <td>Manager ore</td>
+                  <td>Admin, <code>manage_guild</code> oppure ruoli manager hardcoded nel modulo ore.</td>
+                </tr>
+                <tr>
+                  <td>Manager ticket</td>
+                  <td>Admin, <code>manage_guild</code> oppure ruoli manager hardcoded nel modulo ticket.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Sviluppato da: @dossenix @_thetypicalplayer (discord)</p>
+      <p>email: <a href="mailto:mattydosse@gmail.com">mattydosse@gmail.com</a></p>
+      <p class="disclaimer">
+        Guida informativa sulle funzioni di Maggika e sui relativi comandi Discord.
+      </p>
+    </footer>
+  </body>
+</html>

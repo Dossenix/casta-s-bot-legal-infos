@@ -105,6 +105,38 @@ a {
   gap: 10px;
 }
 
+.page-links {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #465451;
+  font-size: 0.9rem;
+  font-weight: 850;
+  padding: 0 14px;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.page-link:hover,
+.page-link.is-active {
+  border-color: rgba(17, 106, 96, 0.22);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
 .tabs {
   display: inline-flex;
   min-width: 0;
@@ -220,6 +252,16 @@ h1 {
   overflow: hidden;
 }
 
+.guide-panel,
+.doc-section,
+.feature-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
 .policy-panel[hidden] {
   display: none;
 }
@@ -251,6 +293,149 @@ h1 {
 
 .policy-content p {
   margin: 0;
+  color: var(--muted);
+}
+
+.policy-content p + p {
+  margin-top: 12px;
+}
+
+.guide-shell {
+  width: min(1120px, calc(100% - 32px));
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 18px;
+}
+
+.feature-item {
+  box-shadow: 0 12px 32px rgba(18, 32, 30, 0.07);
+  padding: 22px;
+}
+
+.feature-item h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.feature-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.guide-panel {
+  margin-bottom: 18px;
+}
+
+.docs-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.doc-section {
+  box-shadow: 0 12px 32px rgba(18, 32, 30, 0.07);
+}
+
+.doc-section summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 22px 24px;
+  color: var(--text);
+  font-size: 1.02rem;
+  font-weight: 900;
+}
+
+.doc-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.doc-section summary::after {
+  content: "+";
+  float: right;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.doc-section[open] summary {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.doc-section[open] summary::after {
+  content: "-";
+}
+
+.doc-section h3 {
+  margin: 22px 24px 10px;
+  font-size: 0.98rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  padding: 18px 24px 2px;
+}
+
+.table-wrap + .table-wrap,
+.compact-table {
+  padding-top: 6px;
+}
+
+table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+td {
+  color: var(--muted);
+}
+
+code {
+  border: 1px solid rgba(17, 106, 96, 0.16);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.86em;
+  font-weight: 750;
+  padding: 0.1em 0.36em;
+}
+
+.note-list {
+  margin: 14px 24px 24px;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.note-list li + li {
+  margin-top: 6px;
+}
+
+.inline-note {
+  margin: 16px 24px 22px;
   color: var(--muted);
 }
 
@@ -292,6 +477,17 @@ h1 {
     width: 100%;
   }
 
+  .page-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .page-link {
+    justify-content: center;
+    padding: 0 8px;
+  }
+
   .tabs {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -319,5 +515,41 @@ h1 {
   .policy-content {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .doc-section summary {
+    padding: 18px 20px;
+  }
+
+  .table-wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .doc-section h3,
+  .note-list,
+  .inline-note {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1040px) {
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 0;
+  }
+
+  .nav-actions {
+    width: 100%;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
